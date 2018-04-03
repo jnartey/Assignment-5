@@ -1,4 +1,12 @@
 # Assignment-5
+Table of Contents
+1. Student -> StudentSimple.java - dependencies Student.java/InputOutput.java
+2. Getting more advanced -> StudentArray.java  - dependencies  Student.java/InputOutput.java
+3. Now we're talking -> StudentArrayAdvanced.java  - dependencies  Student.java/InputOutput.java
+4. Pythagorean Theorum -> PythagoreanTheorem.java
+5  Area Calculator -> AreaOfObjects.java
+6. Divisible by... -> DivisibleBy.java
+
 1. Students
 
 Create a Student class to store information about a student.
