@@ -41,72 +41,81 @@ public class InputOutput {
 		reader.close();
 	}
 	
-	public void printStrArray (String[][] arrayObj) {
-		int maxStrLength = 0;
-		int count = 1;
-		
-		for(String[] row : arrayObj) {//Row
-			for(String column : row) {//Columns
-				if(count == 1) {
-					if(column.length() > maxStrLength) {
-						maxStrLength = column.length();
-					}
-					
-					System.out.printf("%" + maxStrLength + "s", column);
-				}else {
-					System.out.printf("%5s", column);
-				}				
-			}
-			System.out.println("\n");
-			
-			count++;
-		}
+	public void printSpace() {
+		System.out.println("");
 	}
 	
-	public void prStrArr2DStudents (Student[][] arrayObj) {
-		int maxStrLength = 0;
-		int count = 1;
+	public Student[] inputStudentArray(Student[] studentArrayObj) {
 		
-		for(Student[] row : arrayObj) {//Row
-			for(Student column : row) {//Columns
-				if(count == 1) {
-					if(column.getName().length() > maxStrLength) {
-						maxStrLength = column.getName().length();
-					}
-					
-					System.out.printf("%" + maxStrLength + "s", column);
-				}else {
-					System.out.printf("%5s", column);
-				}				
-			}
-			System.out.println("\n");
+		Student student = new Student();
+				
+		for(int index = 0; index < studentArrayObj.length; index++) {
+			String name = inputStr("Student "+ (index + 1) +"'s name");
+			student.setName(name);
 			
-			count++;
+			char grade = inputStr("Student "+ (index + 1) +"'s grade").charAt(0);
+			student.setGrade(grade);
+			
+			double gpa = inputDouble("Student "+ (index + 1) +"'s GPA");
+			student.setGpa(gpa);
+			
+			studentArrayObj[index] = student;
+			studentArrayObj[index] = new Student(name, grade, gpa);
+			printSpace();
 		}
+				
+		return studentArrayObj;
 	}
 	
 	public void prStrArrStudents (Student[] arrayObj) {
 		int maxStrLength = 0;
-		int count = 1;
 		
 		for(Student obj : arrayObj) {//Row
-			if(count == 1) {
-				if(obj.getName().length() > maxStrLength) {
-					maxStrLength = obj.getName().length();
-				}
-				
-				System.out.printf("%" + maxStrLength + "s", obj.getName());
-				System.out.printf("%6s", obj.getGrade());
-				System.out.printf("%6s", obj.getGpa());
-			}else {
-				System.out.printf("%" + maxStrLength + "s", obj.getName());
-				System.out.printf("%6s", obj.getGrade());
-				System.out.printf("%6s", obj.getGpa());
+			if(obj.getName().length() > maxStrLength) {
+				maxStrLength = obj.getName().length();
 			}
+		}
+		
+		System.out.printf("%-" + (maxStrLength+10) + "s" + "%-10s" + "%-10s", "Name", "Grade", "GPA");
+		printSpace();
+		
+		for(Student obj : arrayObj) {
+			System.out.printf("%-" + (maxStrLength + 10) + "s", obj.getName());
+			System.out.printf("%-10s", obj.getGrade());
+			System.out.printf("%-10s", obj.getGpa());
 			
 			System.out.println("");
-			
-			count++;
 		}
+	}
+
+	public void prStrArrStudentsGpaAvg (Student[] arrayObj) {
+		int maxStrLength = 0;
+		double sumGpa = 0;
+		
+		for(Student obj : arrayObj) {//Row
+			if(obj.getName().length() > maxStrLength) {
+				maxStrLength = obj.getName().length();
+			}
+		}
+		
+		System.out.printf("%-" + (maxStrLength+10) + "s" + "%-10s" + "%-10s", "Name", "Grade", "GPA");
+		printSpace();
+		
+		for(Student obj : arrayObj) {
+			//Getting sum of GPA;
+			sumGpa += obj.getGpa();
+			
+			
+			System.out.printf("%-" + (maxStrLength+10) + "s", obj.getName());
+			System.out.printf("%-10s", obj.getGrade());
+			System.out.printf("%-10s", obj.getGpa());
+			
+			printSpace();
+		}
+		
+		printSpace();
+		System.out.println("Average GPA of all "+ arrayObj.length +" students");
+		System.out.println("-----------------------------");
+		System.out.println(sumGpa/arrayObj.length);
 	}
 }
